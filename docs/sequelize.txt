@@ -1,0 +1,24 @@
+TABLE:									SEQUELIZE-CLI MODEL GENERATE:
+
+CUSTOMER:	npx sequelize-cli model:generate --name Customer --attributes firstName:STRING,lastName:STRING,login:STRING,email:STRING,phone:STRING,password:STRING
+
+MENU:		npx sequelize-cli model:generate --name Menu --attributes name:STRING,price:decimal,isAvailable:BOOLEAN,onTop:BOOLEAN,description:STRING
+
+PRODUCT:	npx sequelize-cli model:generate --name Product --attributes name:STRING,price:DECIMAL,isAvailable:BOOLEAN,description:STRING
+
+PROMOTION:	npx sequelize-cli model:generate --name Promotion --attributes name:STRING,price:DECIMAL
+
+INGREDIENT:	npx sequelize-cli model:generate --name Ingredient --attributes name:STRING,quantity:DECIMAL
+
+ORDER:		npx sequelize-cli model:generate --name Order --attributes number:INTEGER,orderStatusCode:BOOLEAN,description:STRING
+
+CART:		npx sequelize-cli model:generate --name Cart --attributes name:STRING
+
+SESSION:	npx sequelize-cli model:generate --name Session --attributes token:STRING
+
+------------------------------------------------------------------------------------------------------------------------------------------
+PRODUCTINGREDIENT: 	npx sequelize-cli model:generate --name ProductIngredient --attributes productId:INTEGER,ingredientId:INTEGER
+
+MENUPRODUCT:		npx sequelize-cli model:generate --name MenuProduct --attributes menuId:INTEGER,productId:INTEGER
+
+ORDERPRODUCT:		npx sequelize-cli model:generate --name OrderProduct --attributes number:INTEGER,productId:INTEGER
