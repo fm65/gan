@@ -1,20 +1,22 @@
 TABLE:									SEQUELIZE-CLI MODEL GENERATE:
 
-CUSTOMER:	npx sequelize-cli model:generate --name Customer --attributes firstName:STRING,lastName:STRING,login:STRING,email:STRING,phone:STRING,password:STRING
+USERS:		npx sequelize-cli model:generate --name User --attributes firstName:STRING,lastName:STRING,email:STRING,password:STRING
 
-MENU:		npx sequelize-cli model:generate --name Menu --attributes name:STRING,price:decimal,isAvailable:BOOLEAN,onTop:BOOLEAN,description:STRING
+PASSENGERS:	npx sequelize-cli model:generate --name Passenger --attributes firstName:STRING,lastName:STRING,address:STRING,city:STRING,pc:INTEGER,birthDate:DATE
 
-PRODUCT:	npx sequelize-cli model:generate --name Product --attributes name:STRING,price:DECIMAL,isAvailable:BOOLEAN,description:STRING
+DESTINATIONS:	npx sequelize-cli model:generate --name Destination --attributes city:STRING,airport:STRING
 
-PROMOTION:	npx sequelize-cli model:generate --name Promotion --attributes name:STRING,price:DECIMAL
+DEPARTURES:	npx sequelize-cli model:generate --name Departure --attributes city:STRING,airport:STRING
 
-INGREDIENT:	npx sequelize-cli model:generate --name Ingredient --attributes name:STRING,quantity:DECIMAL
+FLIGHTS:	npx sequelize-cli model:generate --name Flight --attributes departureDate:DATE,arrivalDate:DATE
 
-ORDER:		npx sequelize-cli model:generate --name Order --attributes number:INTEGER,orderStatusCode:BOOLEAN,description:STRING
+COMPANYS:	npx sequelize-cli model:generate --name Company --attributes name:STRING
 
-CART:		npx sequelize-cli model:generate --name Cart --attributes name:STRING
+PLANES:		npx sequelize-cli model:generate --name Plane --attributes name:STRING,place:INTEGER
 
-SESSION:	npx sequelize-cli model:generate --name Session --attributes token:STRING
+CLASSES:	npx sequelize-cli model:generate --name Classe --attributes type:ENUM
+
+CREWS:		npx sequelize-cli model:generate --name Crew --attributes firstName:STRING,lastName:STRING,post:STRING
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 PRODUCTINGREDIENT: 	npx sequelize-cli model:generate --name ProductIngredient --attributes productId:INTEGER,ingredientId:INTEGER
