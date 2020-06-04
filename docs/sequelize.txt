@@ -19,8 +19,3 @@ CLASSES:	npx sequelize-cli model:generate --name Classe --attributes type:ENUM
 CREWS:		npx sequelize-cli model:generate --name Crew --attributes firstName:STRING,lastName:STRING,post:STRING
 
 ------------------------------------------------------------------------------------------------------------------------------------------
-PRODUCTINGREDIENT: 	npx sequelize-cli model:generate --name ProductIngredient --attributes productId:INTEGER,ingredientId:INTEGER
-
-MENUPRODUCT:		npx sequelize-cli model:generate --name MenuProduct --attributes menuId:INTEGER,productId:INTEGER
-
-ORDERPRODUCT:		npx sequelize-cli model:generate --name OrderProduct --attributes number:INTEGER,productId:INTEGER
