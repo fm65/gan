@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Passengers` (
   `city` VARCHAR(50) NULL,
   `pc` INT(5) NULL,
   `birthDate` DATE NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Users` (
   `email` VARCHAR(50) NULL,
   `password` VARCHAR(255) NULL,
   `mode` VARCHAR(20) NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -56,8 +56,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Destinations` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(50) NULL,
   `airport` VARCHAR(50) NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -70,8 +70,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Departures` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `city` VARCHAR(50) NULL,
   `airport` VARCHAR(50) NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -84,8 +84,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Flights` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `departureDate` DATE NULL,
   `arrivalDate` DATE NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `DestinationId` INT NOT NULL,
   `DepartureId` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -111,8 +111,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `gandb`.`Companys` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -125,8 +125,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Planes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NULL,
   `place` INT NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `FlightId` INT NOT NULL,
   `CompanyId` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -152,8 +152,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `gandb`.`Classes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` ENUM('economy', 'business', 'first') NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
@@ -167,8 +167,8 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Crews` (
   `firstName` VARCHAR(50) NULL,
   `lastName` VARCHAR(50) NULL,
   `post` VARCHAR(50) NULL,
-  `createAt` DATETIME NOT NULL,
-  `updateAt` DATETIME NOT NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
   `CompanyId` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
