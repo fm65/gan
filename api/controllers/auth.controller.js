@@ -2,8 +2,9 @@ const bcrypt   = require('bcrypt');
 const models   = require('../models');
 const jwtUtils = require('../utils').jwtUtils;
 
+
 module.exports = {
-    register: function(req, res){
+    signup: function(req, res){
 
         // Params
         const firstName = req.body.firstName;
@@ -21,7 +22,7 @@ module.exports = {
         })
         .then(function(userFound){
             if (!userFound){
-                bcrypt.hash(password, 5, function(err, bcryptebPassword){
+                bcrypt.hash(password, 10, function(err, bcryptebPassword){
                     const newUser = models.User.create({
                         firstName : firstName,
                         lastName  : lastName,
@@ -31,7 +32,10 @@ module.exports = {
                     })
                     .then(function(newUser){
                         return res.status(201).json({
-                            'userId': newUser.id
+                            "success": true,
+                            "result": {
+                                "message": "Signup successful"
+                            } 
                         })
                     })
                     .catch(function(err){
@@ -67,8 +71,13 @@ module.exports = {
                                                     errBycrypt, resBycrypt){
                     if (resBycrypt) {
                         return res.status(200).json({
-                            'userId': userFound.id,
-                            'token'     : jwtUtils.generateTokenForUser(userFound) 
+                            "success": true,
+                            "result": {
+                                "token": jwtUtils.generateTokenForUser(userFound),
+                                "user": {
+                                    "email": userFound.email
+                                }
+                            } 
                         });
                     }
                     else{
@@ -83,5 +92,24 @@ module.exports = {
         .catch(function(err){
             return res.status(500).json({ "error" : "unable to verify user" });
         });
+    },
+
+    logout: function(req, res){
+        console.log('==== logout function ====')
+    },
+
+    users: function(req, res){
+        const user = models.User.findByPk(req.decoded.id).then(userFound => {
+            return res.status(200).json({
+                "success": true,
+                    "user": {
+                        "email": userFound.email,
+                        "mode": userFound.mode
+                    }
+            });
+        }).catch(err => {
+            console.log(err);
+        });
+        console.log('==== users function ====')
     }
 }

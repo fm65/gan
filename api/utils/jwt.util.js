@@ -1,7 +1,5 @@
 const jwt = require('jsonwebtoken');
 
-const JWT_SIGN_SECRET_KEY = '0ah&67uzhtxxi6&gd@ic?gb!dccv@@qs&sa?876@&@@234cc';
-
 module.exports = {
     /**
      * @param userId  {integer}
@@ -10,12 +8,16 @@ module.exports = {
      */
     generateTokenForUser: function(userData){
         return jwt.sign({
-            userId : userData.id,
-            mode    : userData.mode
+            id        : userData.id,
+            firstName : userData.firstName,
+            lastName  : userData.lastName,
+            email     : userData.email,
+            mode      : userData.mode
         },
-        JWT_SIGN_SECRET_KEY,
+        process.env.ACCESS_TOKEN_SECRET_KEY,
         {
-            expiresIn: '2h'
-        })
+            expiresIn: '2m'
+        }
+        )
     }
 }
