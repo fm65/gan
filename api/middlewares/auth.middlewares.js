@@ -10,9 +10,9 @@ module.exports = {
 		const authHeader = req.headers['authorization'];
 		const token = authHeader && authHeader.split(' ')[1];
 
-		if (token == null) return res.status(401).json({"error": "access required"})
+		if (token == null) return res.status(401).json({"status": "error", "message": "access required"})
 		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET_KEY, (err, decoded) =>{
-			if (err) return res.status(403).json({"error": "access denied"});
+			if (err) return res.status(403).json({"status": "error", "message": "access denied"});
 			console.log(Object.keys(decoded));
 			req.decoded = decoded;
 			next();

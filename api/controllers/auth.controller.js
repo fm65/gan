@@ -13,7 +13,7 @@ module.exports = {
         const password  = req.body.password;
 
         if(firstName == null || lastName == null || email == null || password == null) {
-            return res.status(400).json({ "error": "missing parameters" });
+            return res.status(400).json({ "status": "error", "message": "missing parameters" });
         }
 
         models.User.findOne({
@@ -32,23 +32,21 @@ module.exports = {
                     })
                     .then(function(newUser){
                         return res.status(201).json({
-                            "success": true,
-                            "result": {
-                                "message": "Signup successful"
-                            } 
+                            "status": "success",
+                            "message": "signup successful"
                         })
                     })
                     .catch(function(err){
-                        return res.status(500).json({ "error" : "cannot add user" });
+                        return res.status(500).json({ "status": "error", "message": "cannot add user" });
                     });
                 });
             }
             else{
-                return res.status(409).json({"error": "user already exist"});
+                return res.status(409).json({"status": "error", "message": "user already exist"});
             }
         })
         .catch(function(err){
-            return res.status(500).json({"error": "unable to verify user"});
+            return res.status(500).json({"status": "error", "message": "unable to verify user"});
         });
     },
 
@@ -59,7 +57,7 @@ module.exports = {
         const password  = req.body.password;
 
         if(password == null || email == null) {
-            return res.status(400).json({ "error": "missing parameters" });
+            return res.status(400).json({ "status": "error", "message": "missing parameters" });
         }
 
         models.User.findOne({
@@ -71,7 +69,8 @@ module.exports = {
                                                     errBycrypt, resBycrypt){
                     if (resBycrypt) {
                         return res.status(200).json({
-                            "success": true,
+                            "status": "success",
+                            "message": "login successful",
                             "result": {
                                 "token": jwtUtils.generateTokenForUser(userFound),
                                 "user": {
@@ -81,16 +80,16 @@ module.exports = {
                         });
                     }
                     else{
-                        return res.status(403).json({"error": "invalid password"});
+                        return res.status(403).json({"status": "error", "message": "invalid password"});
                     }
                 });
             }
             else{
-                return res.status(404).json({"error": "user not exist in database"});
+                return res.status(404).json({"status": "error", "message": "user not exist in database"});
             }
         })
         .catch(function(err){
-            return res.status(500).json({ "error" : "unable to verify user" });
+            return res.status(500).json({"status": "error", "message": "unable to verify user" });
         });
     },
 
@@ -99,17 +98,21 @@ module.exports = {
     },
 
     users: function(req, res){
-        const user = models.User.findByPk(req.decoded.id).then(userFound => {
+        const user = models.User.findByPk(req.decoded.id)
+        .then(userFound => {
             return res.status(200).json({
-                "success": true,
+                "status": "success",
+                "message": "auth successful",
+                "result": {
                     "user": {
                         "email": userFound.email,
-                        "mode": userFound.mode
+                        "mode" : userFound.mode
                     }
+                }
             });
-        }).catch(err => {
-            console.log(err);
+        })
+        .catch(err => {
+            return res.status(403).json({"status": "error", "message": "access denied"});
         });
-        console.log('==== users function ====')
     }
 }
