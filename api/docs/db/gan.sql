@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Users` (
   `lastName` VARCHAR(50) NULL,
   `email` VARCHAR(50) NULL,
   `password` VARCHAR(255) NULL,
-  `mode` VARCHAR(20) NULL,
+  `role` VARCHAR(20) NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),

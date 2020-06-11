@@ -12,7 +12,7 @@ module.exports = {
             firstName : userData.firstName,
             lastName  : userData.lastName,
             email     : userData.email,
-            mode      : userData.mode
+            role      : userData.role
         },
         process.env.TOKEN_SECRET_KEY,
         {

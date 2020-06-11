@@ -30,7 +30,7 @@ module.exports = {
                         lastName  : lastName,
                         email     : email,
                         password  : bcryptebPassword,
-                        mode      : 'normal'
+                        role      : 'normal'
                     })
                     .then(function(newUser){
                         return res.status(201).json({
@@ -127,7 +127,7 @@ module.exports = {
                 result: {
                     user: {
                         email: userFound.email,
-                        mode : userFound.mode
+                        role : userFound.role
                     }
                 }
             });
