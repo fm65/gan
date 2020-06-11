@@ -14,7 +14,7 @@ module.exports = {
             email     : userData.email,
             mode      : userData.mode
         },
-        process.env.ACCESS_TOKEN_SECRET_KEY,
+        process.env.TOKEN_SECRET_KEY,
         {
             expiresIn: '1d'
         }
