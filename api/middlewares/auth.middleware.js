@@ -1,4 +1,5 @@
-const jwt = require('jsonwebtoken');
+const jwt    = require('jsonwebtoken');
+const models = require('../models');
 
 global.tokenFlag = true;
 
@@ -16,13 +17,31 @@ module.exports = {
             .json({status: "error", message: "access required"})	
         }
         
-        jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, decoded) =>{
+        jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, user) =>{
             if (err) return res.status(403)
                 .json({status: "error", message: "access denied"});
-            req.decoded = decoded;
+            req.user = user;
             next();
         })
 	},
+
+	/*authRole: function(req, res, next){
+		models.User.findOne({
+            where: {email: req.user.email}
+        })
+        .then(function(userFound){
+        	if (req.user.role !== userFound.role){
+			return res.status(401)
+			.json({ status: "error", message: "access not allowed" });
+		}
+        })
+        .catch(function(err){
+            return res.status(500)
+            .json({status: "error", message: "unable to verify user" });
+        });
+
+		next(); 
+	}*/
 
 	authRole: function(role){
 		return (req, res, next) => {
@@ -33,5 +52,5 @@ module.exports = {
 
 			next();
 		} 
-	},
+	}
 }

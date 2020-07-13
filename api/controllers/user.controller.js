@@ -4,7 +4,7 @@ module.exports = {
 
     users: function(req, res){
 
-        const user = models.User.findByPk(req.decoded.id)
+        const user = models.User.findByPk(req.user.id)
         .then(userFound => {
             return res.status(200).json({
                 status: "success",

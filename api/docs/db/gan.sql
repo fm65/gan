@@ -50,58 +50,20 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `gandb`.`Destinations`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gandb`.`Destinations` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `city` VARCHAR(50) NULL,
-  `airport` VARCHAR(50) NULL,
-  `createdAt` DATETIME NOT NULL,
-  `updatedAt` DATETIME NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `gandb`.`Departures`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `gandb`.`Departures` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `city` VARCHAR(50) NULL,
-  `airport` VARCHAR(50) NULL,
-  `createdAt` DATETIME NOT NULL,
-  `updatedAt` DATETIME NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `gandb`.`Flights`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `gandb`.`Flights` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `departureDate` DATE NULL,
-  `arrivalDate` DATE NULL,
+  `city` VARCHAR(50) NULL,
+  `departure` VARCHAR(50) NULL,
+  `arrival` VARCHAR(50) NULL,
+  `departureDate` DATETIME NULL,
+  `arrivalDate` DATETIME NULL,
+  `published` TINYINT(1) NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NOT NULL,
-  `DestinationId` INT NOT NULL,
-  `DepartureId` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
-  INDEX `fk_Flights_Destinations_idx` (`DestinationId` ASC),
-  INDEX `fk_Flights_Departures1_idx` (`DepartureId` ASC),
-  CONSTRAINT `fk_Flights_Destinations`
-    FOREIGN KEY (`DestinationId`)
-    REFERENCES `gandb`.`Destinations` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Flights_Departures1`
-    FOREIGN KEY (`DepartureId`)
-    REFERENCES `gandb`.`Departures` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 
