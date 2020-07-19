@@ -1,0 +1,88 @@
+<div *ngIf="currentFlight" class="edit-form">
+  <h4>Flight</h4>
+  <form>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="City Name"
+        id="city"
+        required
+        [(ngModel)]="currentFlight.city"
+        name="city"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="arrival">Arrival</label>
+      <input
+        class="form-control"
+        id="arrival"
+        placeholder="Airport Name"
+        required
+        [(ngModel)]="currentFlight.arrival"
+        name="arrival"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="departureDate">Departure date</label>
+      <input
+        class="form-control"
+        id="departureDate"
+        placeholder="dd/mm/yyyy"
+        required
+        [(ngModel)]="currentFlight.departureDate"
+        name="departureDate"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="arrivalDate">Arrival date</label>
+      <input
+        class="form-control"
+        id="arrivalDate"
+        placeholder="dd/mm/yyyy"
+        required
+        [(ngModel)]="currentFlight.arrivalDate"
+        name="arrivalDate"
+      />
+    </div>
+
+    <div class="form-group">
+      <label><strong>Status:</strong></label>
+      {{ currentFlight.published ? "Published" : "Pending" }}
+    </div>
+  </form>
+
+  <button
+    class="badge badge-primary mr-2"
+    *ngIf="currentFlight.published"
+    (click)="updatePublished(false)"
+  >
+    UnPublish
+  </button>
+  <button
+    *ngIf="!currentFlight.published"
+    class="badge badge-primary mr-2"
+    (click)="updatePublished(true)"
+  >
+    Publish
+  </button>
+
+  <button class="badge badge-danger mr-2" (click)="deleteFlight()">
+    Delete
+  </button>
+
+  <button type="submit" class="badge badge-success" (click)="updateFlight()">
+    Update
+  </button>
+  <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentFlight">
+  <br />
+  <p>Cannot access this Flight...</p>
+</div>

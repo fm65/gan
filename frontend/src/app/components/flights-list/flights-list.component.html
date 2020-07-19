@@ -1,0 +1,63 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by city"
+        [(ngModel)]="city"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchCity()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Flights List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let flight of flights; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveFlight(flight, i)"
+      >
+        {{ flight.city }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllFlights()">
+      Remove All
+    </button>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentFlight">
+      <h4>Flight</h4>
+      <div>
+        <label><strong>City:</strong></label> {{ currentFlight.city }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentFlight.description }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentFlight.published ? "Published" : "Pending" }}
+      </div>
+
+      <a class="badge badge-warning" href="/flights/{{ currentFlight.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentFlight">
+      <br />
+      <p>Please click on a Flight...</p>
+    </div>
+  </div>
+</div>
