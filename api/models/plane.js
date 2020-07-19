@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     place: DataTypes.INTEGER
   }, {});
   Plane.associate = function(models) {
-  	Plane.belongsTo(models.Flight);
+  	Plane.hasMany(models.Flight);
     Plane.belongsToMany(models.Classe, {through: 'PlaneClasses'});
   };
   return Plane;

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     published: DataTypes.BOOLEAN
     }, {});
   Flight.associate = function(models) {
-    Flight.hasMany(models.Plane);
+    Flight.belongsTo(models.Plane);
     Flight.belongsToMany(models.Passenger, {through: 'FlightPassengers'});
   };
   return Flight;
