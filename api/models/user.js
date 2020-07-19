@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
-    mode: DataTypes.STRING
+    role: DataTypes.STRING
   }, {});
   User.associate = function(models) {
     User.belongsToMany(models.Passenger, {through: 'UserPassengers'});

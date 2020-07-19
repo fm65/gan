@@ -12,9 +12,9 @@ module.exports = {
             firstName : userData.firstName,
             lastName  : userData.lastName,
             email     : userData.email,
-            mode      : userData.mode
+            role      : userData.role
         },
-        process.env.ACCESS_TOKEN_SECRET_KEY,
+        process.env.TOKEN_SECRET_KEY,
         {
             expiresIn: '1d'
         }

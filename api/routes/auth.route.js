@@ -1,13 +1,14 @@
 const AuthController = require('../controllers').AuthController;
-const autheMiddlewares = require('../middlewares').autheMiddlewares;
+const AuthMiddleware = require('../middlewares').AuthMiddleware;
 
 module.exports = function(app) {
 
-    app.post('/api/users/signup', AuthController.signup);
+    app.post('/api/v1/signup', AuthController.signup);
 
-    app.post('/api/users/login', AuthController.login);
+    app.post('/api/v1/login', AuthController.login);
 
-    app.delete('/api/users/logout', AuthController.logout);
+    //app.post('/api/v1/admin', AuthController.admin);
 
-    app.get('/api/users', autheMiddlewares.authUser, AuthController.users);
+    app.delete('/api/v1/logout', AuthController.logout);
+
 };
