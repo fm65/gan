@@ -1,16 +1,22 @@
-const UserController = require('../controllers').UserController;
-const AuthMiddleware = require('../middlewares').AuthMiddleware;
+const controller = require('../controllers').userController;
+const authJwt = require('../middlewares').authJwtMiddleware;
 
 module.exports = function(app) {
+  
+    app.get('/api/v1/test/all', controller.allAccess);
 
-    app.get('/api/v1/users', 
-    	AuthMiddleware.authUser,
-    	AuthMiddleware.authRole('ADMIN'), 
-    	UserController.users);
+    app.get("/api/test/user",
+    	[authJwt.verifyToken],
+    	controller.userBoard
+    );
 
-    app.get('/api/v1/users/:id', AuthMiddleware.authUser, UserController.users);
+    app.get("/api/v1/test/mod",
+    	[authJwt.verifyToken, authJwt.isModerator],
+    	controller.moderatorBoard
+    );
 
-    app.put('/api/v1/users/:id', AuthMiddleware.authUser, UserController.users);
-
-    app.delete('/api/v1/users/:id', AuthMiddleware.authUser, UserController.users);
+   app.get("/api/v1/test/admin",
+    	[authJwt.verifyToken, authJwt.isAdmin],
+    	controller.adminBoard
+  );
 };

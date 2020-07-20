@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Users` (
   `lastName` VARCHAR(50) NULL,
   `email` VARCHAR(50) NULL,
   `password` VARCHAR(255) NULL,
-  `role` VARCHAR(20) NULL,
   `createdAt` DATETIME NOT NULL,
   `updatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`id`),
@@ -140,6 +139,19 @@ CREATE TABLE IF NOT EXISTS `gandb`.`Crews` (
     REFERENCES `gandb`.`Companys` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `gandb`.`Roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `gandb`.`Roles` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NULL,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
 

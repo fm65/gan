@@ -1,25 +1,15 @@
-const models   = require('../models');
+exports.allAccess = (req, res) => {
+  res.status(200).send("Public Content.");
+};
 
-module.exports = {
+exports.userBoard = (req, res) => {
+  res.status(200).send("User Content.");
+};
 
-    users: function(req, res){
+exports.adminBoard = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
 
-        const user = models.User.findByPk(req.user.id)
-        .then(userFound => {
-            return res.status(200).json({
-                status: "success",
-                message: "auth successful",
-                result: {
-                    user: {
-                        email: userFound.email,
-                        role : userFound.role
-                    }
-                }
-            });
-        })
-        .catch(err => {
-            return res.status(403)
-            .json({status: "error", message: "access denied"});
-        });
-    }
-}
+exports.moderatorBoard = (req, res) => {
+  res.status(200).send("Moderator Content.");
+};

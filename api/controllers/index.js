@@ -1,6 +1,5 @@
 module.exports = {
-	AuthController: require('./auth.controller'),
-	UserController: require('./user.controller'),
-	flightController: require('./flight.controller'),
-	PlaneController: require('./plane.controller')
+	authController: require('./auth.controller'),
+	userController: require('./user.controller'),
+	flightController: require('./flight.controller')
 }
