@@ -1,14 +1,15 @@
-const AuthController = require('../controllers').AuthController;
-const AuthMiddleware = require('../middlewares').AuthMiddleware;
+const controller = require('../controllers').authController;
+const verifySignUp = require('../middlewares').verifySignUpMiddleware;
 
 module.exports = function(app) {
+  
+    app.post('/api/v1/signup',
+      [verifySignUp.checkDuplicateEmail],
+      controller.signup
+    );
 
-    app.post('/api/v1/signup', AuthController.signup);
+    app.post('/api/v1/signin', controller.signin);
 
-    app.post('/api/v1/login', AuthController.login);
-
-    //app.post('/api/v1/admin', AuthController.admin);
-
-    app.delete('/api/v1/logout', AuthController.logout);
+    //app.delete('/api/v1/logout', AuthController.logout);
 
 };

@@ -18,4 +18,6 @@ CLASSES:	npx sequelize-cli model:generate --name Classe --attributes type:ENUM
 
 CREWS:		npx sequelize-cli model:generate --name Crew --attributes firstName:STRING,lastName:STRING,post:STRING
 
+ROLES:		npx sequelize-cli model:generate --name Role --attributes name:STRING
+
 ------------------------------------------------------------------------------------------------------------------------------------------

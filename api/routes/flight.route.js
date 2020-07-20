@@ -1,5 +1,4 @@
 const flightController = require('../controllers').flightController;
-const AuthMiddleware = require('../middlewares').AuthMiddleware;
 
 module.exports = function(app) {
 
